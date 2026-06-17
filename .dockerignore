@@ -1,0 +1,19 @@
+.git/
+.vscode/
+.venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.tmp
+
+# Large local model/checkpoint directories; mount as volumes when needed.
+models/EgypTalk-ASR-v2/
+models/NileTTS-XTTS/
+models/chatterbox-egyptian-v0/
+
+# Local desktop captures and artifacts
+Screenshot *.png
+artifacts/

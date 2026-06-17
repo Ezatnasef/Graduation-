@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شات صوتي ونصي موحد</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/fontawesome-free-7.0.0-web/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/chat1.css">
+</head>
+<body>
+
+    <div class="chat-container">
+        <!-- HEADER -->
+        <header class="chat-header">
+            <div class="logo">
+                <i class="fas fa-comments"></i>
+            </div>
+            <h1 class="chat-title">شات صوتي ونصي موحد</h1>
+            
+            <div class="header-actions">
+                <button id="modeToggle" class="btn-chip" title="التبديل بين الوضع المحلي والمتصل">
+                    <i class="fas fa-desktop"></i>
+                    <span>محلي</span>
+                </button>
+                
+                <button id="ttsToggle" class="btn-chip active" title="تشغيل/إيقاف النطق الصوتي">
+                    <i class="fas fa-volume-up"></i>
+                    <span>نطق</span>
+                </button>
+                
+                <button id="clearBtn" class="btn-chip" title="مسح المحادثة">
+                    <i class="fas fa-trash-alt"></i>
+                    <span>مسح</span>
+                </button>
+                
+                <div class="status-indicator">
+                    <span id="statusDot" class="status-dot offline"></span>
+                    <span id="statusText">غير متصل</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- MESSAGES AREA -->
+        <div id="messagesContainer" class="messages-area"></div>
+
+        <!-- INPUT AREA -->
+        <div class="input-area">
+            <div class="input-wrapper">
+                <textarea 
+                    id="messageInput" 
+                    class="message-input"
+                    placeholder="اكتب رسالتك هنا أو استخدم الميكروفون..."
+                    rows="1"
+                ></textarea>
+                
+                <div class="input-buttons">
+                    <button id="sendBtn" class="btn-send" title="إرسال (Enter)">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>إرسال</span>
+                    </button>
+                </div>
+            </div>
+            
+            <button id="micBtn" class="btn-mic" title="تسجيل صوتي">
+                <i class="fas fa-microphone"></i>
+                <div class="recording-indicator"></div>
+            </button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Font Awesome JS -->
+    <script src="js/all.min.js"></script>
+    
+    <!-- Custom Chat JS -->
+    <script src="js/chat.js"></script>
+
+</body>
+</html>

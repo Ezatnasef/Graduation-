@@ -1,0 +1,20 @@
+[
+  {
+    "id": "eval_001",
+    "text": "الأوردر اتأخر ومندوب التوصيل مش بيرد",
+    "expected_intent": "complaint",
+    "expected_keywords": ["توصيل", "متأخر", "مندوب"]
+  },
+  {
+    "id": "eval_002",
+    "text": "نسيت الباسورد وعايز افتح الحساب",
+    "expected_intent": "technical_issue",
+    "expected_keywords": ["باسورد", "حساب", "دعم"]
+  },
+  {
+    "id": "eval_003",
+    "text": "ممكن أعرف شروط القرض الشخصي",
+    "expected_intent": "inquiry",
+    "expected_keywords": ["قرض", "شروط", "تفاصيل"]
+  }
+]

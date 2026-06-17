@@ -1,0 +1,41 @@
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    container_name: servia-backend
+    restart: unless-stopped
+    environment:
+      SERVIA_ENV: prod
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen2.5:7b}
+      OLLAMA_MAX_TOKENS: ${OLLAMA_MAX_TOKENS:-64}
+      STT_WHISPER_API_URL: ${STT_WHISPER_API_URL:-https://api.openai.com/v1/audio/transcriptions}
+      TTS_PROVIDER: ${TTS_PROVIDER:-edge}
+      STT_PROVIDER: ${STT_PROVIDER:-whisper_api}
+      STT_WHISPER_API_KEY: ${STT_WHISPER_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      XTTS_MODEL_DIR: ${XTTS_MODEL_DIR:-}
+      STT_EGYPTALK_LOCAL_MODEL: ${STT_EGYPTALK_LOCAL_MODEL:-}
+    expose:
+      - "8765"
+    networks:
+      - servia-net
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.frontend
+    container_name: servia-frontend
+    depends_on:
+      - backend
+    restart: unless-stopped
+    ports:
+      - ${SERVIA_PUBLIC_PORT:-80}:80
+    networks:
+      - servia-net
+
+networks:
+  servia-net:
+    driver: bridge

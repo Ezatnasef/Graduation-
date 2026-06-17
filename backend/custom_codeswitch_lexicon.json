@@ -1,0 +1,60 @@
+{
+  "exact_phrases": {
+    "daily routine": "الروتين اليومي",
+    "screen recorder no ads": "مسجل شاشة بدون اعلانات",
+    "screen recorder": "مسجل شاشة",
+    "computer graphics": "جرافيكس",
+    "online games": "العاب اونلاين",
+    "documentary": "وثائقي",
+    "hardware": "هاردوير",
+    "software": "سوفت وير",
+    "evaluation": "تقييم",
+    "topic": "موضوع",
+    "meeting": "اجتماع",
+    "academic": "اكاديمي",
+    "academic career": "مسار اكاديمي",
+    "career": "مسار مهني",
+    "internship": "تدريب",
+    "semester": "ترم",
+    "course": "كورس",
+    "courses": "كورسات",
+    "rights": "حقوق",
+    "subjective": "نسبي",
+    "creative": "ابداعي",
+    "stressed": "مضغوط",
+    "mood": "مود",
+    "kids": "اطفال",
+    "playlist": "بلاي ليست",
+    "follower": "متابع",
+    "followers": "متابعين",
+    "football": "كورة",
+    "mobile": "موبايل",
+    "together": "سوا",
+    "vegan": "نباتي",
+    "either": "يا اما",
+    "it depends": "حسب",
+    "i believe": "انا معتقد",
+    "okay": "تمام",
+    "ok": "تمام",
+    "fine": "تمام",
+    "bye bye": "باي باي"
+  },
+  "regex_phrases": [
+    {
+      "pattern": "\\b(the type of|the way of)\\b",
+      "replacement": "نوع"
+    },
+    {
+      "pattern": "\\bi got down\\b",
+      "replacement": "اتحبطت"
+    },
+    {
+      "pattern": "\\blacking of experiences?\\b",
+      "replacement": "قلة خبرة"
+    },
+    {
+      "pattern": "\\byou developed\\b",
+      "replacement": "اتطورت"
+    }
+  ]
+}

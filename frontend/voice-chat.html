@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servia - نظام الصوت المصري</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/all.min.css">
+
+    <!-- Voice Chat CSS -->
+    <link rel="stylesheet" href="css/voice-chat.css">
+
+    <style>
+        body { font-family: 'Cairo', 'Segoe UI', sans-serif; }
+    </style>
+</head>
+<body>
+
+    <div class="voice-layout">
+    <aside class="sentiment-sidebar" aria-label="تحليل مشاعر العميل">
+        <div class="sentiment-header">
+            <div class="sentiment-title-wrap">
+                <i class="fas fa-face-smile"></i>
+                <h2>تحليل مشاعر العميل</h2>
+            </div>
+            <div id="sentimentCurrent" class="sentiment-current sentiment-neutral">محايد</div>
+        </div>
+
+        <div class="sentiment-tools">
+                <a class="analytics-link" href="http://localhost:8765/static/analytics.html" target="_blank" rel="noopener">
+                <i class="fas fa-chart-line"></i>
+                <span>التحليلات الدورية</span>
+            </a>
+            <div id="sessionInfo" class="session-info">Session: --</div>
+        </div>
+
+        <p class="sentiment-subtitle">يتم التحديث تلقائيًا مع كل رسالة جديدة من المستخدم.</p>
+
+        <div id="sentimentEmpty" class="sentiment-empty">
+            لسه مفيش رسائل متحللة. اول ما المستخدم يرسل رسالة هتظهر الحالة هنا.
+        </div>
+
+        <div id="sentimentList" class="sentiment-list"></div>
+    </aside>
+
+    <div class="voice-chat-container">
+
+        <!-- ============ HEADER ============ -->
+        <header class="voice-header">
+            <div class="voice-logo">
+                <i class="fas fa-waveform-lines"></i>
+            </div>
+            <h1 class="voice-title">سيرفيا - نظام الصوت المصري</h1>
+
+            <div class="header-controls">
+                <!-- Dialect Selector -->
+                <div class="dialect-selector">
+                    <button class="dialect-btn active" data-dialect="cairene" title="اللهجة القاهرية">
+                        <span class="full-text">قاهرية</span>
+                    </button>
+                    <button class="dialect-btn" data-dialect="saidi" title="اللهجة الصعيدية">
+                        <span class="full-text">صعيدية</span>
+                    </button>
+                    <button class="dialect-btn" data-dialect="alexandrian" title="اللهجة الإسكندرانية">
+                        <span class="full-text">إسكندرانية</span>
+                    </button>
+                    <button class="dialect-btn" data-dialect="bedouin" title="اللهجة البدوية">
+                        <span class="full-text">بدوية</span>
+                    </button>
+                </div>
+
+                <!-- Gender Toggle -->
+                <button id="genderToggle" class="gender-toggle" title="تغيير الصوت">
+                    <i class="fas fa-venus"></i>
+                    <span>أنثى</span>
+                </button>
+
+                <!-- Continuous Mode -->
+                <div id="continuousToggle" class="continuous-toggle" title="الوضع المستمر - تحدث بحرية">
+                    <div class="toggle-switch"></div>
+                    <span>مستمر</span>
+                </div>
+
+                <!-- Clear -->
+                <button id="clearBtn" class="gender-toggle" title="مسح المحادثة">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+
+                <!-- Connection Status -->
+                <div class="connection-status">
+                    <span id="statusDot" class="status-dot disconnected"></span>
+                    <span id="statusText">غير متصل</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ============ MESSAGES ============ -->
+        <div id="messagesContainer" class="messages-area"></div>
+
+        <!-- ============ VAD VISUALIZER ============ -->
+        <div id="vadVisualizer" class="vad-visualizer">
+            <div class="vad-bar-container">
+                <span id="vadStatusLabel" class="vad-status-label">صامت</span>
+                <div id="vadBars" class="vad-bars"></div>
+                <div class="vad-energy-meter">
+                    <div id="vadEnergyFill" class="vad-energy-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ INPUT AREA ============ -->
+        <div class="input-area">
+            <div class="text-input-wrapper">
+                <textarea
+                    id="textInput"
+                    class="text-input"
+                    placeholder="اكتب رسالتك هنا أو استخدم الميكروفون..."
+                    rows="1"
+                ></textarea>
+                <button id="sendBtn" class="btn-send" title="إرسال">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>إرسال</span>
+                </button>
+            </div>
+
+            <div class="mic-area">
+                <button id="micBtn" class="btn-mic-main" title="اضغط للاستماع">
+                    <i class="fas fa-microphone"></i>
+                    <div class="pulse-ring"></div>
+                </button>
+                <span id="micLabel" class="mic-label">ميكروفون</span>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Interrupt Button (floating) -->
+    <button id="interruptBtn" class="btn-interrupt" title="قاطع الصوت">
+        <i class="fas fa-hand"></i>
+        <span>قاطع</span>
+    </button>
+
+    <!-- Scripts -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/all.min.js"></script>
+    <script src="js/voice-chat.js"></script>
+
+</body>
+</html>
