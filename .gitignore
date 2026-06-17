@@ -11,6 +11,7 @@ artifacts/
 backend_server.log
 output.log
 startup_log.txt
+models/
 models/**/.cache/
 models/**/*.metadata
 *.sqlite3
